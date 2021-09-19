@@ -1,0 +1,108 @@
+.name {
+  margin-right: 20px;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.number {
+  font-size: 23px;
+  margin-right: auto;
+  text-decoration: underline;
+}
+
+.item {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  padding: 10px;
+}
+
+.enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.enterActive {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 250ms linear;
+}
+
+.exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.exitActive {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 250ms linear;
+}
+
+@media screen and (max-width: 760px) {
+  .name {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .number {
+    padding: 10px 0px;
+  }
+
+  .item {
+    /* flex-direction: column; */
+    margin-bottom: 10px;
+  }
+}
+
+.btn {
+  padding: 0;
+}
+
+.iconDelBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.callIcon {
+  margin-right: 40px;
+  display: block;
+  padding: 5px 8px;
+
+  border: 1px solid rgb(104, 177, 132);
+  border-radius: 0.25rem;
+  fill: white;
+}
+
+.callIcon:focus,
+.callIcon:hover {
+  background: rgb(35, 165, 57);
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.callIcon:hover .iconPhone {
+  fill: white;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.callIcon:focus .iconPhone {
+  fill: white;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.callContainer {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+}
+
+.phoneTitle {
+  font-size: larger;
+}

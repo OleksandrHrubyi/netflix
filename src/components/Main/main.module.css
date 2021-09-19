@@ -1,0 +1,29 @@
+.contactTitle {
+  font-size: 20px;
+}
+.enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.enterActive {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 250ms linear;
+}
+
+.exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.exitActive {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 250ms linear;
+}
+
+.mainBg {
+  background-image: url(https://assets.nflxext.com/ffe/siteui/vlv3/5a27cb25-33a9-4bcc-b441-95fefabcbd37/00b3f8f4-5bea-4451-ad36-89c9bd43db7e/UA-en-20210823-popsignuptwoweeks-perspective_alpha_website_large.jpg1800w);
+  background: rgba(0, 0, 0, 0.4);
+}

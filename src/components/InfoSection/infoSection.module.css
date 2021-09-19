@@ -1,0 +1,38 @@
+.infoSection {
+  border-bottom: 8px solid #222;
+  width: 100%;
+}
+
+.box {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #fff;
+  max-width: 1900px;
+  margin: 0px auto;
+  padding: 20px 5px;
+}
+
+.infoContainer {
+  max-width: 30%;
+}
+
+.title {
+  color: #fff;
+}
+
+.imgContainer {
+  position: relative;
+}
+
+.img {
+  position: relative;
+  z-index: 2;
+}
+
+.animation {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

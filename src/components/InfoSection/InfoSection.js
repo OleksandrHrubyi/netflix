@@ -13,7 +13,7 @@ function InfoSection() {
             <div className={styles.imgContainer}>
                 <img className={styles.img} src={tvIcon} alt="tv icon" />
                 <div className={styles.animation}>
-                    <video>
+                    <video className={styles.video}>
                         <source src={videoSource} type="video/mp4"></source>
                     </video>
 

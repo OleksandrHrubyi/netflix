@@ -3,17 +3,20 @@ import styles from "../MainForm/mainform.module.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-function MainForm() {
+function MainForm({ condition }) {
     const [value, setValue] = useState('')
     const handleSubmit = (e) => {
+        e.preventDefault()
         console.log(this.state.value);
     }
     const handleChange = (event) => {
         setValue(event.target.value)
     }
     return <div className={styles.mainForm}>
-        <h2 className={styles.title}>Unlimited movies, TV shows, and more.</h2>
-        <p className={styles.subtitle}>Watch anywhere. Cancel anytime.</p>
+        {condition && <div>
+            <h2 className={styles.title}>Unlimited movies, TV shows, and more.</h2>
+            <p className={styles.subtitle}>Watch anywhere. Cancel anytime.</p>
+        </div>}
         <span className={styles.info}>Ready to watch? Enter your email to log in your account.</span>
         <Form className={styles.form} onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail" className={styles.inputContainer}>

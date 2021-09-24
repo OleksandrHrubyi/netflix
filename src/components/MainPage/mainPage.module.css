@@ -1,0 +1,41 @@
+.wrapper {
+  max-width: 1000px;
+  margin: 100px auto 0;
+}
+
+.page {
+  display: flex;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #fff;
+}
+
+.imgContainer {
+  max-width: 300px;
+}
+
+.img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.filmInfo {
+  max-width: 70%;
+}
+
+.title {
+  text-align: center;
+}
+
+.summary {
+  padding: 10px;
+}
+
+.navContainer {
+  display: flex;
+}
+
+.facebook {
+  background-color: red;
+}

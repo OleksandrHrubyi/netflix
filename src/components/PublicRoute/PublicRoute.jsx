@@ -1,7 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Route, Redirect } from "react-router-dom";
-import { getTokenState } from "../../redux/User/userSelectors";
+import React from 'react'
+import { connect } from 'react-redux'
+import { Route, Redirect } from 'react-router-dom'
+import { getTokenState } from '../../redux/User/userSelectors'
 
 const PublicRoute = ({
   component: Component,
@@ -14,17 +14,17 @@ const PublicRoute = ({
       {...rest}
       render={(props) =>
         isLogin && restricted ? (
-          <Redirect to="/contacts" />
+          <Redirect to="/library" />
         ) : (
           <Component {...props} />
         )
       }
     />
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => ({
   isLogin: getTokenState(state),
-});
+})
 
-export default connect(mapStateToProps)(PublicRoute);
+export default connect(mapStateToProps)(PublicRoute)

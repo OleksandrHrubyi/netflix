@@ -3,9 +3,8 @@ import React, { useEffect } from 'react'
 
 const LIGHT = 'lightTheme'
 const DARK = 'darkTheme'
-const bodyRef = document.querySelector('body')
 
-function ThemeSwitch() {
+function ThemeSwitch({ bodyRef }) {
   useEffect(() => {
     const toogleRef = document.querySelector('#theme-switch-toggle')
     if (localStorage.getItem('theme') === 'dark') {

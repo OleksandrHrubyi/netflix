@@ -8,7 +8,6 @@ import { logoutUser } from '../../redux/User/userOperation'
 import { getTokenState, getUserName } from '../../redux/User/userSelectors'
 import styles from './header.module.css'
 import phonebook from '../../img/phonebook.svg'
-import ThemeSwitch from '../themeSwitch/ThemeSwitch'
 
 function Header({ islogin, name, onLogout }) {
   useEffect(() => {
@@ -52,16 +51,18 @@ function Header({ islogin, name, onLogout }) {
                 <NavLink className={styles.login} to="/login">
                   <IconContext.Provider value={{ className: styles.loginIcon }}>
                     <AiOutlineLogin />{' '}
-                    <span className={styles.loginTitle}>Sign in</span>
+                    <span className={styles.loginTitle}>Log in</span>
                   </IconContext.Provider>
                 </NavLink>
                 <NavLink className={styles.registration} to="/registr">
                   <span>Sign up</span>
                 </NavLink>
+                <NavLink className={styles.registration} to="/shows">
+                  <span>show</span>
+                </NavLink>
               </div>
             </>
           )}
-          <div>{window.location.pathname !== '/' && <ThemeSwitch />}</div>
         </div>
       </div>
     </div>

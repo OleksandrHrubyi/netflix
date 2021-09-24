@@ -1,25 +1,47 @@
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  min-width: 300px;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 60px 0px;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+@media screen and (max-width: 374px) {
+  .wrapper {
+    margin-top: 80px;
+  }
+}
+
 .form {
-  width: 100%;
+  padding: 0px 40px 30px;
 }
 
-.enter {
-  opacity: 0;
-  transform: translateX(100%);
+.email {
+  margin-bottom: 20px;
 }
 
-.enterActive {
-  opacity: 1;
-  transform: translateX(0);
-  transition: all 250ms linear;
+.label {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 28px;
 }
 
-.exit {
-  transform: translateX(0);
-  opacity: 1;
+.btn {
+  background-color: #e50914;
+  margin-top: 50px;
+  margin-bottom: 30px;
 }
 
-.exitActive {
-  opacity: 0;
-  transform: translateX(100%);
-  transition: all 250ms linear;
+.registration {
+  color: #fff;
+}
+
+.signUp {
+  color: #737373;
 }

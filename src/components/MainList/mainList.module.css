@@ -1,0 +1,50 @@
+.wrapper {
+  position: absolute;
+  max-width: 1900px;
+  margin: 0 auto;
+  background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0,
+      rgba(0, 0, 0, 0) 60%,
+      rgba(0, 0, 0, 0.8) 100%
+    ),
+    url(/src/img/maiinbg.jpeg);
+}
+
+.list {
+  padding: 100px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  position: relative;
+  margin: 15px;
+  width: calc((100% - 8 * 15px) / 3);
+  transition: transform 0.3s;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.title {
+  color: #fff;
+  font-size: 18px;
+}
+
+.titleContainer {
+  padding: 10px 5px;
+}
+
+.btn {
+  position: absolute;
+  z-index: 23;
+}
+
+.filmInfo {
+  padding: 10px;
+  position: absolute;
+  z-index: 19;
+  top: 0px;
+}

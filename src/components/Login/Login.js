@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { NavLink } from 'react-router-dom'
 import { loginUser } from "../../redux/User/userOperation";
 import { getErrorMessage } from "../../redux/User/userSelectors";
+import MainLayout from 'components/MainLayout/MainLayout'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import styles from "./login.module.css";
@@ -40,37 +42,46 @@ function Login({ onLogin }) {
   };
 
   return (
-    <Form className={styles.form} onSubmit={handleSubmit}>
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Login</Form.Label>
-        <Form.Control
-          type="text"
-          name="email"
-          value={email}
-          onChange={handleChange}
-          placeholder="Enter your email"
-          autoComplete="off"
-          required
-        />
-      </Form.Group>
+    <MainLayout>
+      <div className={styles.wrapper}>
+        <Form className={styles.form} onSubmit={handleSubmit}>
+          <Form.Group controlId="formBasicEmail" className={styles.email}>
+            <Form.Label className={styles.label}>Sign In</Form.Label>
+            <Form.Control
+              type="text"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              autoComplete="off"
+              required
+            />
+          </Form.Group>
 
-      <Form.Group controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          name="password"
-          value={password}
-          onChange={handleChange}
-          placeholder="Password"
-          required
-          autoComplete="off"
-        />
-      </Form.Group>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Control
+              type="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+              placeholder="Password"
+              required
+              autoComplete="off"
+            />
+          </Form.Group>
 
-      <Button variant="dark" type="submit" block>
-        Login
-      </Button>
-    </Form>
+          <Button variant="danger" type="submit" block className={styles.btn}>
+            Login
+          </Button>
+          <div>
+            <span className={styles.signUp}>New to Netflix?</span>
+            <NavLink className={styles.registration} to="/registr">
+              <span> Sign up</span>
+            </NavLink></div>
+        </Form>
+
+      </div>
+    </MainLayout>
   );
 }
 

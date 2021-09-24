@@ -34,7 +34,6 @@ function MainForm({ condition }) {
             <Button type="submit" variant="danger" block className={styles.submitBtn}>
                 Get Started
             </Button>
-            {/* <button className={styles.submitBtn} type="submit"> Get Started</button> */}
         </Form>
     </div>
 }

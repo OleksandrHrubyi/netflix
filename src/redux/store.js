@@ -1,5 +1,6 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import contactsReducer from "./Contacts/contactReducer";
+import showReducer from "./Contacts/contactReducer";
 import userReducer from "./User/userReducer";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -24,6 +25,7 @@ const persistedReducer = persistReducer(persistConfig, userReducer);
 
 const rootReducer = combineReducers({
   contacts: contactsReducer,
+  shows: showReducer,
   auth: persistedReducer,
 });
 

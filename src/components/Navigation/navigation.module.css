@@ -1,0 +1,15 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  min-width: 100px;
+}
+
+.navigation {
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+}

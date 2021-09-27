@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { registerUser } from '../../redux/User/userOperation'
-import MainLayout from 'components/MainLayout/MainLayout'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import styles from './registr.module.css'
@@ -45,7 +44,7 @@ function Registr({ onSubmit }) {
   }
 
   return (
-    <MainLayout>
+    <div className={styles.container}>
       <div className={styles.wrapper}>
         <Form onSubmit={handleSubmit} className={styles.form}>
           <Form.Group controlId="formBasicName">
@@ -91,7 +90,7 @@ function Registr({ onSubmit }) {
           </div>
         </Form>
       </div>
-    </MainLayout>
+    </div>
   )
 }
 

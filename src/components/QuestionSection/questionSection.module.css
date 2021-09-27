@@ -15,9 +15,13 @@
 }
 
 .questionContainer {
-  max-width: 80%;
+  max-width: 1000px;
   text-align: center;
   padding: 90px 0px 10px;
+}
+
+.questionBox {
+  max-width: 1000px;
 }
 
 .item {

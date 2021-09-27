@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
 import styles from "../Footer/footer.module.css";
 
 function Footer() {
-
     return <div className={styles.footer}>
         <div className={styles.box}>
             <h3 className={styles.title}>Questions? Call 0800-000-7969</h3>

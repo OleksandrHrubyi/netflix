@@ -1,73 +1,77 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink, withRouter } from 'react-router-dom'
-import { getFilm, getAllEpisod } from '../../service'
-import MainLayout from 'components/MainLayout/MainLayout'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { getFilm } from '../../service'
 import Navigation from "components/Navigation/Navigation";
-import ThemeSwitch from '../themeSwitch/ThemeSwitch'
-import Footer from 'components/Footer/Footer'
 import styles from './mainPage.module.css'
-import { FiVolume } from "react-icons/fi";
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import RedditIcon from '@mui/icons-material/Reddit';
+import Preloader from 'components/Preloader/Preloader'
 
 function MainPage({ arr }) {
     const [film, setFilm] = useState(null)
-    const bodyRef = document.querySelector('body')
+    const [isPreloader, setisPreloader] = useState(null)
     const curPath = window.location.href.split('/')
     const filmId = curPath[curPath.length - 1]
 
     useEffect(() => {
+        setisPreloader(true)
         getFilm(filmId).then((resp) => {
-            console.log(resp.summary, 'resp.summary');
             setFilm(resp)
-            console.log(resp);
+            setisPreloader(false)
         })
     }, [filmId])
 
-    const handleClick = () => {
-        console.log(film.name, 'film')
-    }
-
     return (
         <>
-            <MainLayout page>
-
-                <div className={styles.wrapper}>
-                    <div className={styles.navContainer}><Navigation /></div>
-
-                    {film && <div className={styles.page}>
+            <div className={styles.wrapper}>
+                <div className={styles.container}>
+                    {isPreloader && <Preloader />}
+                    {!isPreloader && film && <div className={styles.page}>
                         <div className={styles.imgContainer}>
-                            <img className={styles.img} src={film.image.original} alt={film.name} />
-                            <div>
-                                <p>Genres</p>
-                                <ul>
-                                    {film.genres.map((el, i) => <li key={i}>{el}</li>)}
-                                </ul>
-                            </div>
-                            <div>
-                                <span>Share this on:</span>
-                                <span className={styles.facebook}>
-                                    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.tvmaze.com%2Fshows%2F8%2Fglee" title="facebook">facebook</a>
-                                </span>
-                            </div>
-                            {film.network.country.name && <div>
-                                <strong>Network: </strong>
-                                <p>{film.network.country.name}</p>
-                            </div>}
-                            <div>
-                                <strong>Schedule:</strong>
-                                <p>{film.schedule.days.map((el) => <span key={el}>{el}</span>)}</p>
-                                <p>{film.schedule.time}</p>
-                            </div>
+                            <LazyLoadImage className={styles.img} src={film.image.original} alt={film.name} />
+                            <div className={styles.infoContainer}>
+                                {film.network.country.name && <div className={styles.network}>
+                                    <strong className={styles.strongTitle}>Network:</strong>
+                                    <p className={styles.networkTitle}>{film.network.country.name}</p>
+                                </div>}
+                                <div className={styles.genres}>
+                                    <strong className={styles.strongTitle}>Genres:</strong>
+                                    <ul className={styles.list}>
+                                        {film.genres.map((el, i) => <li className={styles.item} key={i}>{el}</li>)}
+                                    </ul>
+                                </div>
+                                <div className={styles.schedule}>
+                                    <strong className={styles.strongTitle}>Schedule:</strong>
+                                    <p>{film.schedule.days.map((el) => <span key={el}>{el}: </span>)}
+                                        <span>{film.schedule.time}</span>
+                                    </p>
 
-                            <div>
-                                <strong>Status:</strong>
-                                <p>{film.status}</p>
+                                </div>
+                                <div className={styles.status}>
+                                    <strong className={styles.strongTitle}>Status:</strong>
+                                    <p>{film.status}</p>
+                                </div>
                             </div>
-
                         </div>
                         <div className={styles.filmInfo}>
-                            <div><ThemeSwitch bodyRef={bodyRef} /></div>
+                            <div className={styles.navContainer}><Navigation /></div>
                             <h2 className={styles.title}>{film.name}</h2>
                             <div className={styles.summary} dangerouslySetInnerHTML={{ __html: film.summary }}></div>
+                            <div className={styles.socialContainer}>
+                                <p className={styles.shareTitle}>Share this on:</p>
+                                <ul className={styles.socialList}>
+                                    <li>
+                                        <a id="facebook" target="_blank" rel="noreferrer" href={`https://www.facebook.com/sharer/sharer.php?u=${film.url}`} title="facebook"><FacebookIcon fontSize="large" /> </a>
+                                    </li>
+                                    <li>
+                                        <a id="twitter" target="_blank" rel="noreferrer" href={`https://twitter.com/home?status=${film.url}`} title="twitter"><TwitterIcon fontSize="large" /></a>
+                                    </li>
+                                    <li>
+                                        <a id="reddit" target="_blank" rel="noreferrer" href={`//www.reddit.com/submit?url=${film.url}`} title="reddit"><RedditIcon color="success" fontSize="large" /></a>
+                                    </li>
+                                </ul>
+                            </div>
 
                         </div>
                         <div>
@@ -75,8 +79,7 @@ function MainPage({ arr }) {
                         </div>
                     </div>}
                 </div>
-            </MainLayout>
-
+            </div>
         </>
     )
 }

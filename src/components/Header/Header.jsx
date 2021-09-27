@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import { ReactSVG } from 'react-svg'
 import { AiOutlineLogin, AiOutlineLogout } from 'react-icons/ai'
@@ -10,15 +9,10 @@ import styles from './header.module.css'
 import phonebook from '../../img/phonebook.svg'
 
 function Header({ islogin, name, onLogout }) {
-  useEffect(() => {
-    console.log(window.location.pathname)
-  }, [])
-
   return (
     <div className={styles.header}>
       <div className={styles.container}>
         <NavLink className={styles.link} to="/">
-          {/* <span className={styles.title}> Netflix</span>{' '} */}
           <ReactSVG
             src={phonebook}
             beforeInjection={(svg) => {
@@ -33,7 +27,11 @@ function Header({ islogin, name, onLogout }) {
               <span className={styles.name}>
                 Welcome, {name && name.toUpperCase()}
               </span>
-
+              <div>
+                <NavLink className={styles.login} to="/shows">
+                  <span>Shows</span>
+                </NavLink>
+              </div>
               <button
                 className={styles.logoutBtn}
                 type="button"
@@ -48,6 +46,8 @@ function Header({ islogin, name, onLogout }) {
           ) : (
             <>
               <div className={styles.nav}>
+                {islogin && <div></div>}
+
                 <NavLink className={styles.login} to="/login">
                   <IconContext.Provider value={{ className: styles.loginIcon }}>
                     <AiOutlineLogin />{' '}
@@ -56,9 +56,6 @@ function Header({ islogin, name, onLogout }) {
                 </NavLink>
                 <NavLink className={styles.registration} to="/registr">
                   <span>Sign up</span>
-                </NavLink>
-                <NavLink className={styles.registration} to="/shows">
-                  <span>show</span>
                 </NavLink>
               </div>
             </>

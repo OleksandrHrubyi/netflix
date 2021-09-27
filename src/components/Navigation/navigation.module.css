@@ -8,8 +8,16 @@
 }
 
 .navigation {
-  background-color: rgba(0, 0, 0, 0.75);
-  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.85);
   margin-bottom: 10px;
   padding: 5px 10px;
+}
+
+.link {
+  color: #fff;
+  transition: all;
+}
+
+.link:hover {
+  color: rgb(3, 14, 119);
 }

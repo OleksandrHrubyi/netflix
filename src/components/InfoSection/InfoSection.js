@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import styles from "../InfoSection/infoSection.module.css";
 import tvIcon from '../../img/tvlogo.png'
 
@@ -13,12 +12,10 @@ function InfoSection() {
             <div className={styles.imgContainer}>
                 <img className={styles.img} src={tvIcon} alt="tv icon" />
                 <div className={styles.animation}>
-                    <video className={styles.video}>
+                    <video className={styles.video} autoPlay="autoplay" loop={true}>
                         <source src={videoSource} type="video/mp4"></source>
                     </video>
-
                 </div>
-
             </div>
         </div>
     </div>

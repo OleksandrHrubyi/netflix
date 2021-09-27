@@ -2,8 +2,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getAllContacts } from '../../redux/Contacts/contactsSelectors'
 import MainLayout from 'components/MainLayout/MainLayout'
-import styles from './main.module.css'
-
 function Main({ contacts }) {
   return (
     <>

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { useEffect } from 'react'
 import { connect } from "react-redux";
 import { NavLink } from 'react-router-dom'
 import { loginUser } from "../../redux/User/userOperation";
 import { getErrorMessage } from "../../redux/User/userSelectors";
-import MainLayout from 'components/MainLayout/MainLayout'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import styles from "./login.module.css";
@@ -32,6 +32,8 @@ function Login({ onLogin }) {
     }
   };
 
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (email && password) {
@@ -42,7 +44,7 @@ function Login({ onLogin }) {
   };
 
   return (
-    <MainLayout>
+    <div className={styles.container}>
       <div className={styles.wrapper}>
         <Form className={styles.form} onSubmit={handleSubmit}>
           <Form.Group controlId="formBasicEmail" className={styles.email}>
@@ -81,7 +83,7 @@ function Login({ onLogin }) {
         </Form>
 
       </div>
-    </MainLayout>
+    </div>
   );
 }
 

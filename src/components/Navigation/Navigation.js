@@ -1,19 +1,15 @@
 import styles from './navigation.module.css'
-import { NavLink, withRouter } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 function Navigation({ name }) {
     return <div className={styles.navigation}>
         <ul className={styles.list}>
             <li className={styles.item}>
-                <NavLink to='/'>Home</NavLink>
+                <NavLink to='/' className={styles.link}>Home</NavLink>
             </li>
             <li className={styles.item}>
-                <NavLink to='/shows'>Shows</NavLink>
+                <NavLink to='/shows' className={styles.link}>Shows</NavLink>
             </li>
-            <li className={styles.item}>
-                <NavLink to={`/shows/${name}`}>Shows</NavLink>
-            </li>
-
         </ul>
     </div>
 }

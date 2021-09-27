@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
 import styles from "../DownloadSection/downloadSection.module.css";
 import tvIcon from '../../img/loadIcon.jpeg'
 
 function DownloadSection() {
-
     return <div className={styles.downloadSection}>
         <div className={styles.box}>
             <div className={styles.infoContainer}>

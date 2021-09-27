@@ -1,7 +1,27 @@
 .wrapper {
-  max-width: 1000px;
-  margin: 100px auto 0;
+  width: 100%;
+  min-height: 500px;
+  max-width: 1900px;
+  margin: 0 auto;
+  background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0,
+      rgba(0, 0, 0, 0) 60%,
+      rgba(0, 0, 0, 0.8) 100%
+    ),
+    url(/src/img/maiinbg.jpeg);
 }
+
+.container {
+  max-width: 1000px;
+  margin: 150px auto 0;
+}
+
+/* @media screen and (min-width: 768px) {
+  .container {
+    margin: 100px auto 0;
+  }
+} */
 
 .page {
   display: flex;
@@ -12,6 +32,12 @@
 
 .imgContainer {
   max-width: 300px;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #fff;
+}
+
+.infoContainer {
+  padding: 10px;
 }
 
 .img {
@@ -30,12 +56,55 @@
 
 .summary {
   padding: 10px;
-}
-
-.navContainer {
-  display: flex;
+  max-height: 400px;
+  overflow: auto;
 }
 
 .facebook {
   background-color: red;
+}
+
+.socialContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+}
+
+.socialList {
+  display: flex;
+}
+
+.shareTitle {
+  font-size: 20px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.network,
+.genres,
+.schedule,
+.status {
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.strongTitle {
+  margin-right: 5px;
+}
+
+.networkTitle {
+  margin: 0px;
+}
+
+.list {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+}
+
+.item {
+  padding: 0px 3px;
 }

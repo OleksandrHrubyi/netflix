@@ -1,20 +1,22 @@
+.container {
+  padding: 150px 0px;
+  background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0,
+      rgba(0, 0, 0, 0) 60%,
+      rgba(0, 0, 0, 0.8) 100%
+    ),
+    url(/src/img/maiinbg.jpeg);
+}
+
 .wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 30%;
   min-width: 300px;
+  max-width: 400px;
   margin: 0 auto;
   background-color: rgba(0, 0, 0, 0.75);
   padding: 60px 0px;
   border-radius: 5px;
-  margin-top: 15px;
-}
-@media screen and (max-width: 374px) {
-  .wrapper {
-    margin-top: 80px;
-  }
+  height: 500px;
 }
 
 .form {

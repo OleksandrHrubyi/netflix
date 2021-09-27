@@ -23,7 +23,9 @@ const initialUserState = {
 
 const user = createReducer(initialUserState, {
   [signupUserSucces]: (_, { payload }) => payload.user,
-  [loginUserSucces]: (_, { payload }) => payload.user,
+  [loginUserSucces]: (_, { payload }) => {
+    return payload.user
+  },
   [logoutUserSucces]: () => initialUserState,
   [refreshUserSucces]: (_, { payload }) => payload,
 });

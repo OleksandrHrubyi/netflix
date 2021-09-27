@@ -1,27 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "../QuestionSection/questionSection.module.css";
 import { dataQuestion } from '../../data/question'
-
 
 function QuestionSection() {
     const [showInfo, setShowInfo] = useState(false)
     const [showBox, setShowBox] = useState(false)
-
-
     const handleClick = (e) => {
-        console.log(e.target.dataset.id)
         setShowInfo(e.target.dataset.id)
         setShowBox(!showBox)
-
     }
-
 
     return <div className={styles.QuestionSection}>
         <div className={styles.box}>
             <div className={styles.questionContainer}>
                 <h2 className={styles.title}>Frequently Asked Questions</h2>
             </div>
-            <div>
+            <div className={styles.questionBox}>
                 <ul className={styles.list}>
                     {dataQuestion.map(el => {
                         return <li key={el.title} className={styles.item}>

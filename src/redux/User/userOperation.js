@@ -43,7 +43,6 @@ export const registerUser = (value) => async (dispatch) => {
 
   try {
     const response = await signupUser(value);
-    console.log(response, 'response.login')
     token.set(response.token);
     dispatch(signupUserSucces(response));
   } catch (error) {
@@ -60,10 +59,8 @@ export const loginUser = (value) => async (dispatch) => {
 
   try {
     const response = await loginUserService(value);
-    console.log(response, 'response.login')
-    token.set(response.token);
-
-    dispatch(loginUserSucces(response));
+    token.set(response.data.token);
+    dispatch(loginUserSucces(response.data));
   } catch (error) {
     dispatch(loginUserError(error.message));
 
@@ -75,7 +72,6 @@ export const loginUser = (value) => async (dispatch) => {
 
 export const logoutUser = () => async (dispatch) => {
   dispatch(logoutUserRequest());
-
   try {
     await logOutUserService();
     token.unset();

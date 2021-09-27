@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
 import styles from "../KidSection/kidSection.module.css";
-import tvIcon from '../../img/tvlogo.png'
+
 
 function KidSection() {
-
     return <div className={styles.kidSection}>
         <div className={styles.box}>
             <div className={styles.kidContainer}>

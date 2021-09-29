@@ -7,7 +7,8 @@ import Container from "../Container/Container";
 import PublicRoute from "../PublicRoute/PublicRoute";
 import PrivatRoute from "../PrivatRoute/PrivatRoute";
 import { refreshUser } from "../../redux/User/userOperation";
-
+import { useEffect } from "react";
+import Preloader from "components/Preloader/Preloader";
 const Main = React.lazy(() => import("../Main/Main"));
 const Home = React.lazy(() => import("../Home/Home"));
 const Login = React.lazy(() => import("../Login/Login"));
@@ -17,11 +18,15 @@ const Page = React.lazy(() => import('../MainPage/MainPage'))
 
 function App({ onRefreshUser }) {
 
+  useEffect(() => {
+    onRefreshUser()
+  }, [])
+
   return (
     <>
       {" "}
       <Container>
-        <Suspense fallback={<p>Loud...</p>}>
+        <Suspense fallback={<Preloader />}>
           <MainLayout>
             <Switch>
               <PrivatRoute component={List} path="/shows" exact />

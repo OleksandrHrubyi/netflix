@@ -2,8 +2,8 @@ import axios from "axios";
 // https://my-net.herokuapp.com/api 
 
 
-let signup = "http://localhost:3000/api"
-let main = "http://api.tvmaze.com"
+const signup = "http://localhost:3000/api"
+const main = "http://api.tvmaze.com"
 
 
 
@@ -33,19 +33,16 @@ export const refreshUserService = (data) => {
   return axios.get(`${signup}/users/current`);
 };
 
-// export const getContacts = async (page) => {
-//   const response = await axios.get(`${path}/${page}`);
-//   return response.data;
-// };
+export const addFavorite = async (filmId) => {
+  const response = axios.patch(`${signup}/shows/${filmId}/favorite`, filmId)
+  return response
+}
 
-// export const uploadContacts = async (contact) => {
-//   const response = await axios.post(path, contact);
-//   return response.data;
-// };
-
-// export const removeContacts = (contactId) => {
-//   return axios.delete(`${path}/${contactId}`);
-// };
+export const getAll = () => {
+  return fetch(`${main}/shows`).then(response => response.json()).then(result => {
+    return result
+  })
+}
 
 export const getAllEpisod = (page) => {
   return fetch(`${main}/shows?page=${page}`).then(response => response.json()).then(result => {
@@ -59,7 +56,8 @@ export const getFilm = async (filmId) => {
   })
 }
 
-// export const getOne = async () => {
-//   const response = await axios.get(path);
-//   return response.data;
-// }
+export const searchFilms = async (film) => {
+  return fetch(`https://api.tvmaze.com/search/shows?q=${film}`).then(response => response.json()).then(result => {
+    return result
+  })
+}

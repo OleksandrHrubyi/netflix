@@ -88,7 +88,6 @@ export const refreshUser = () => async (dispatch, getState) => {
   const {
     auth: { token: persistedToken },
   } = getState();
-
   if (!persistedToken) {
     return;
   }
@@ -100,6 +99,7 @@ export const refreshUser = () => async (dispatch, getState) => {
     const response = await refreshUserService();
     dispatch(refreshUserSucces(response.data));
   } catch (error) {
+    token.unset()
     dispatch(refreshUserError(error.message));
     alert({
       text: error,

@@ -16,7 +16,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 50px;
+  padding: 30px 50px 10px;
 }
 
 .themeContainer {
@@ -113,16 +113,28 @@
 }
 
 .logoutBtn {
-  background: #212529;
-  border-radius: 3px;
-  padding: 3px 8px;
-  border: none;
-  margin-right: 25px;
-  color: white;
-  border: 1px solid#666;
+  padding: 0px 20px;
+  min-width: 100px;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  outline: none;
+  text-align: center;
+  background-color: #000;
+  cursor: pointer;
+  box-shadow: 0 0 11px 0 rgb(255 255 255 / 75%);
 }
 
 .logoutBtn:focus,
 .logoutBtn:hover {
   background: #333333;
+}
+
+.logOutContainer {
+  display: flex;
+}
+
+.showTitle {
+  font-size: 22px;
+  color: #fff;
 }

@@ -24,24 +24,28 @@ function Header({ islogin, name, onLogout }) {
         <div className={styles.themeContainer}>
           {islogin ? (
             <div className={styles.authname}>
-              <span className={styles.name}>
+              {/* <span className={styles.name}>
                 Welcome, {name && name.toUpperCase()}
-              </span>
-              <div>
-                <NavLink className={styles.login} to="/shows">
-                  <span>Shows</span>
-                </NavLink>
+              </span> */}
+              <div className={styles.logOutContainer}>
+                {window.location.pathname !== '/shows' && (
+                  <div>
+                    <NavLink className={styles.login} to="/shows">
+                      <span className={styles.showTitle}>Catalog</span>
+                    </NavLink>
+                  </div>
+                )}
+                <button
+                  className={styles.logoutBtn}
+                  type="button"
+                  onClick={onLogout}
+                >
+                  <IconContext.Provider value={{ className: styles.loginIcon }}>
+                    <AiOutlineLogout />{' '}
+                  </IconContext.Provider>
+                  Logout
+                </button>
               </div>
-              <button
-                className={styles.logoutBtn}
-                type="button"
-                onClick={onLogout}
-              >
-                <IconContext.Provider value={{ className: styles.loginIcon }}>
-                  <AiOutlineLogout />{' '}
-                </IconContext.Provider>
-                Logout
-              </button>
             </div>
           ) : (
             <>

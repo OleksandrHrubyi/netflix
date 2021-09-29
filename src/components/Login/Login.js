@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useEffect } from 'react'
 import { connect } from "react-redux";
 import { NavLink } from 'react-router-dom'
 import { loginUser } from "../../redux/User/userOperation";

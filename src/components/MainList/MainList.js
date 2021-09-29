@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from 'react-router-dom'
-import { getAllEpisod } from '../../service'
+import { getAllEpisod, addFavorite, searchFilms, getAll } from '../../service'
 import styles from './mainList.module.css'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Preloader from "components/Preloader/Preloader";
+import { TrendingUpRounded } from "@mui/icons-material";
+import nophoto from '../../img/nophoto.jpeg'
 
 function MainList() {
     const [shows, setShows] = useState([])
@@ -14,15 +16,44 @@ function MainList() {
     const [showBtnUp, setShowBtnUp] = useState(false)
     const [isPreloader, setIsPreloader] = useState(true)
     const [renderPaginBtn, setRenderPaginBtn] = useState(true)
+    const [searchValue, setSearchValue] = useState('')
+    const [isVisiblePagin, setIsVisiblePagin] = useState(TrendingUpRounded)
+    const [isActive, setIsActive] = useState('all')
+
+
 
     useEffect(() => {
         setIsPreloader(true)
         getAllData(page)
-        document.addEventListener("scroll", () => {
-            window.scrollY > 1000 ? setShowBtnUp(true) : setShowBtnUp(false)
-        })
+        setIsActive('All')
+        // document.addEventListener("scroll", () => {
+        //     window.scrollY > 1000 ? setShowBtnUp(true) : setShowBtnUp(false)
+        // })
     }, [])
 
+
+    const handleSearch = (e) => {
+        if (!e.target.value.length) {
+            setPage('0')
+            setIsActive('All')
+            getAllData(page)
+            return
+        }
+        setSearchValue(e.target.value)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        searchFilms(searchValue).then(res => {
+            if (res) {
+                const result = res.map(el => el.show)
+                setRenderShows(result)
+                setIsVisiblePagin(false)
+
+            }
+        })
+
+    }
 
 
 
@@ -35,13 +66,15 @@ function MainList() {
             setFavorite(favorite.filter(el => el !== favoriteFilm))
         }
         if (!favorite.includes(favoriteFilm)) {
+            addFavorite(e.target.dataset.id)
             setFavorite([favoriteFilm, ...favorite])
         }
         localStorage.setItem('favorites', JSON.stringify(favorite))
     }
 
     const handleSortingFavorites = (e) => {
-        if (e.target.dataset.id === 'favorites') {
+        setIsActive(e.target.dataset.id)
+        if (e.target.dataset.id === 'Favorites') {
             if (favorite.length) {
                 setRenderPaginBtn(false)
                 const newArr = []
@@ -55,10 +88,24 @@ function MainList() {
                 setRenderShows(newArr)
             }
         }
-        if (e.target.dataset.id === 'all') {
+        if (e.target.dataset.id === 'All') {
+            setIsVisiblePagin(true)
             setRenderShows(shows)
             setRenderPaginBtn(true)
         }
+        sortByGenres(e.target.dataset.id)
+    }
+    const sortByGenres = (genre) => {
+        const arr = []
+        getAll().then(resp => {
+            resp.forEach(el => {
+                if (el.genres.includes(genre)) {
+                    arr.push(el)
+                }
+            })
+            setRenderShows(arr)
+        })
+
     }
 
 
@@ -103,14 +150,28 @@ function MainList() {
                 {showBtnUp && <button className={styles.btnUp} onClick={handleUp}>UP</button>}
                 <div className={styles.listContainer}>
                     <div className={styles.sortContainer}>
-                        <button disabled={!favorite.length} data-id="favorites" onClick={handleSortingFavorites} type="button" className={styles.sortFav}>Favorites</button>
-                        <button data-id="all" onClick={handleSortingFavorites} type="button" className={styles.sortFav}>All</button>
+                        <div className={styles.filterContainer}>
+                            <button data-id="All" onClick={handleSortingFavorites} type="button" className={isActive !== 'All' ? styles.sortFav : styles.activeBtn}>All</button>
+                            <button data-id="Drama" onClick={handleSortingFavorites} className={isActive !== 'Drama' ? styles.sortFav : styles.activeBtn}>Drama</button>
+                            <button data-id="Action" onClick={handleSortingFavorites} className={isActive !== 'Action' ? styles.sortFav : styles.activeBtn}>Action</button>
+                            <button data-id="Horror" onClick={handleSortingFavorites} className={isActive !== 'Horror' ? styles.sortFav : styles.activeBtn}>Horror</button>
+                            <button data-id="Anime" onClick={handleSortingFavorites} className={isActive !== 'Anime' ? styles.sortFav : styles.activeBtn}>Anime</button>
+                            <button data-id="Comedy" onClick={handleSortingFavorites} className={isActive !== 'Comedy' ? styles.sortFav : styles.activeBtn}>Comedy</button>
+                            <button data-id="Adventure" onClick={handleSortingFavorites} className={isActive !== 'Adventure' ? styles.sortFav : styles.activeBtn}>Adventure</button>
+                            <button disabled={!favorite.length} data-id="Favorites" onClick={handleSortingFavorites} type="button" className={isActive !== 'Favorites' ? styles.sortFav : styles.activeBtn}>Favorites</button>
+                        </div>
+                        <div>
+                            <form className={styles.form}>
+                                <input className={styles.input} type="text" onChange={handleSearch} />
+                                <button onClick={handleSubmit} className={styles.formBtn} type="submit">Search</button>
+                            </form>
+                        </div>
                     </div>
                     {isPreloader && <Preloader />}
                     {!isPreloader && <ul className={styles.list}>{renderShows.map((el, i) => {
                         return <li key={el.id} className={styles.item}>
                             <NavLink to={`/shows/${el.id}`}>
-                                <LazyLoadImage alt={el.name} src={el.image.medium}
+                                <LazyLoadImage alt={el.name} src={el && el.image && el.image.medium ? el.image.medium : nophoto}
                                 />
                             </NavLink>
                             <div className={styles.titleContainer}>
@@ -140,9 +201,9 @@ function MainList() {
                     })}
                     </ul>}
                 </div>
-                {!isPreloader && renderPaginBtn && <div className={styles.paginContainer}>
+                {!isPreloader && isActive === 'All' && <div className={styles.paginContainer}>
                     <button className={styles.paginBtn} data-id="prev" type='button' onClick={handlePagin}>prev</button>
-                    {page < 4 && <button className={styles.paginBtn} data-id="next" type='button' onClick={handlePagin}>next</button>}
+                    {page < 4 && isVisiblePagin && <button className={styles.paginBtn} data-id="next" type='button' onClick={handlePagin}>next</button>}
                 </div>}
             </div >
         </>

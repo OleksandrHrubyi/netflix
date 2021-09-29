@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getTokenState } from '../../redux/User/userSelectors'
+import { getTokenState, getUserName } from '../../redux/User/userSelectors'
 import styles from "../MainForm/mainform.module.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -11,6 +11,7 @@ function MainForm({ islogin }) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
     }
 
     const handleChange = (event) => {
@@ -54,6 +55,7 @@ function MainForm({ islogin }) {
 
 const mapStateToProps = (state) => ({
     islogin: getTokenState(state),
+    name: getUserName(state)
 })
 
 export default connect(mapStateToProps)(withRouter(MainForm))

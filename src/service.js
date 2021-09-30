@@ -1,6 +1,6 @@
 import axios from "axios";
-
 const signup = "https://my-net.herokuapp.com/api"
+// const signup = "http://localhost:3000/api"
 const main = "https://api.tvmaze.com"
 
 export const signupUser = async (data) => {
@@ -30,7 +30,7 @@ export const refreshUserService = () => {
 };
 
 export const addFavorite = async (filmId) => {
-  const response = axios.patch(`${signup}/shows/${filmId}/favorite`, filmId)
+  const response = axios.patch(`${signup}/users/${filmId}/favorite`, filmId)
   return response
 }
 

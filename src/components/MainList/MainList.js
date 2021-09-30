@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from 'react-router-dom'
-import { getAllEpisod, addFavorite, searchFilms, getAll } from '../../service'
+import { getAllEpisod, searchFilms, getAll } from '../../service'
 import styles from './mainList.module.css'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Preloader from "components/Preloader/Preloader";
@@ -62,7 +62,7 @@ function MainList() {
             setFavorite(favorite.filter(el => el !== favoriteFilm))
         }
         if (!favorite.includes(favoriteFilm)) {
-            addFavorite(e.target.dataset.id)
+            // addFavorite(e.target.dataset.id)
             setFavorite([favoriteFilm, ...favorite])
         }
         localStorage.setItem('favorites', JSON.stringify(favorite))

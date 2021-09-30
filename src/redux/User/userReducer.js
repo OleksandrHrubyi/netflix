@@ -11,10 +11,7 @@ import {
   refreshUserError,
   refreshUserRequest,
 } from "./userAction";
-import {
-  addContactsSucces,
-  getContactsSucces,
-} from "../Contacts/contactAction";
+
 
 const initialUserState = {
   name: null,
@@ -45,8 +42,6 @@ const error = createReducer(null, {
 
 const isLogin = createReducer(false, {
   [refreshUserSucces]: () => true,
-  [addContactsSucces]: () => true,
-  [getContactsSucces]: () => true,
   [signupUserSucces]: () => true,
   [loginUserSucces]: () => true,
   [refreshUserRequest]: () => true,

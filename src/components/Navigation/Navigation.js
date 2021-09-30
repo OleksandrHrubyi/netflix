@@ -1,7 +1,7 @@
 import styles from './navigation.module.css'
 import { NavLink } from 'react-router-dom'
 
-function Navigation({ name }) {
+function Navigation() {
     return <div className={styles.navigation}>
         <ul className={styles.list}>
             <li className={styles.item}>

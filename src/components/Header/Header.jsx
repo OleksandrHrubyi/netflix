@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { logoutUser } from '../../redux/User/userOperation'
 import { getTokenState, getUserName } from '../../redux/User/userSelectors'
 import styles from './header.module.css'
-import phonebook from '../../img/phonebook.svg'
+import logo from '../../img/logo.svg'
 
 function Header({ islogin, name, onLogout }) {
   return (
@@ -14,7 +14,7 @@ function Header({ islogin, name, onLogout }) {
       <div className={styles.container}>
         <NavLink className={styles.link} to="/">
           <ReactSVG
-            src={phonebook}
+            src={logo}
             beforeInjection={(svg) => {
               svg.classList.add(styles.phonebookIcon)
               svg.setAttribute('style', 'width: 170px')

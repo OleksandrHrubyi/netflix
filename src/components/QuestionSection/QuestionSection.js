@@ -5,6 +5,7 @@ import { dataQuestion } from '../../data/question'
 function QuestionSection() {
     const [showInfo, setShowInfo] = useState(false)
     const [showBox, setShowBox] = useState(false)
+
     const handleClick = (e) => {
         setShowInfo(e.target.dataset.id)
         setShowBox(!showBox)

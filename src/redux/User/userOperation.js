@@ -45,11 +45,14 @@ export const registerUser = (value) => async (dispatch) => {
     const response = await signupUser(value);
     token.set(response.token);
     dispatch(signupUserSucces(response));
+    alert({
+      text: "Register success",
+    });
   } catch (error) {
     dispatch(signupUserError(error.message));
-
+    console.log(error, 'errr');
     alert({
-      text: error,
+      text: error.message,
     });
   }
 };
@@ -61,11 +64,14 @@ export const loginUser = (value) => async (dispatch) => {
     const response = await loginUserService(value);
     token.set(response.data.token);
     dispatch(loginUserSucces(response.data));
+    alert({
+      text: "Login success",
+    });
   } catch (error) {
     dispatch(loginUserError(error.message));
 
     alert({
-      text: error,
+      text: error.message,
     });
   }
 };
@@ -76,10 +82,13 @@ export const logoutUser = () => async (dispatch) => {
     await logOutUserService();
     token.unset();
     dispatch(logoutUserSucces());
+    alert({
+      text: "Logout success",
+    });
   } catch (error) {
     dispatch(logoutUserError(error.message));
     alert({
-      text: error,
+      text: error.message,
     });
   }
 };
@@ -99,9 +108,11 @@ export const refreshUser = () => async (dispatch, getState) => {
     const response = await refreshUserService();
     dispatch(refreshUserSucces(response.data));
   } catch (error) {
+    localStorage.removeItem('persist:token')
+    token.unset()
     dispatch(refreshUserError(error.message));
     alert({
-      text: error,
+      text: error.message,
     });
   }
 };

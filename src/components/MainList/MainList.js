@@ -10,35 +10,38 @@ import nophoto from '../../img/nophoto.jpeg'
 function MainList() {
     const [shows, setShows] = useState([])
     const [renderShows, setRenderShows] = useState(shows)
-    const [pressedBtn, setPressedBtn] = useState(false)
     const [favorite, setFavorite] = useState([])
     const [page, setPage] = useState(0)
     const [showBtnUp, setShowBtnUp] = useState(false)
     const [isPreloader, setIsPreloader] = useState(true)
-    const [renderPaginBtn, setRenderPaginBtn] = useState(true)
     const [searchValue, setSearchValue] = useState('')
     const [isVisiblePagin, setIsVisiblePagin] = useState(TrendingUpRounded)
     const [isActive, setIsActive] = useState('all')
-
-
 
     useEffect(() => {
         setIsPreloader(true)
         getAllData(page)
         setIsActive('All')
-        // document.addEventListener("scroll", () => {
-        //     window.scrollY > 1000 ? setShowBtnUp(true) : setShowBtnUp(false)
-        // })
-    }, [])
+        document.addEventListener("scroll", visibleBtnUp)
+        return () => {
+            document.removeEventListener("scroll", visibleBtnUp)
+        }
+    }, [page])
 
+
+    const visibleBtnUp = () => {
+        window.scrollY > 1000 ? setShowBtnUp(true) : setShowBtnUp(false)
+    }
 
     const handleSearch = (e) => {
         if (!e.target.value.length) {
+            setIsVisiblePagin(true)
             setPage('0')
             setIsActive('All')
             getAllData(page)
             return
         }
+        setIsVisiblePagin(false)
         setSearchValue(e.target.value)
     }
 
@@ -49,18 +52,11 @@ function MainList() {
                 const result = res.map(el => el.show)
                 setRenderShows(result)
                 setIsVisiblePagin(false)
-
             }
         })
-
     }
 
-
-
     const handleFavorite = (e) => {
-        if (!favorite.length) {
-            setPressedBtn(true)
-        }
         const favoriteFilm = Number(e.target.dataset.id)
         if (favorite.includes(favoriteFilm)) {
             setFavorite(favorite.filter(el => el !== favoriteFilm))
@@ -76,7 +72,6 @@ function MainList() {
         setIsActive(e.target.dataset.id)
         if (e.target.dataset.id === 'Favorites') {
             if (favorite.length) {
-                setRenderPaginBtn(false)
                 const newArr = []
                 shows.forEach(el => {
                     favorite.forEach(id => {
@@ -91,10 +86,12 @@ function MainList() {
         if (e.target.dataset.id === 'All') {
             setIsVisiblePagin(true)
             setRenderShows(shows)
-            setRenderPaginBtn(true)
         }
-        sortByGenres(e.target.dataset.id)
+        if (e.target.dataset.id !== 'All' && e.target.dataset.id !== 'Favorites') {
+            sortByGenres(e.target.dataset.id)
+        }
     }
+
     const sortByGenres = (genre) => {
         const arr = []
         getAll().then(resp => {
@@ -105,10 +102,7 @@ function MainList() {
             })
             setRenderShows(arr)
         })
-
     }
-
-
 
     const handlePagin = (e) => {
         scrollTo(0, -200)
@@ -143,7 +137,6 @@ function MainList() {
         window.scrollTo(x, y)
     }
 
-
     return (
         <>
             <div className={styles.wrapper}>
@@ -158,7 +151,7 @@ function MainList() {
                             <button data-id="Anime" onClick={handleSortingFavorites} className={isActive !== 'Anime' ? styles.sortFav : styles.activeBtn}>Anime</button>
                             <button data-id="Comedy" onClick={handleSortingFavorites} className={isActive !== 'Comedy' ? styles.sortFav : styles.activeBtn}>Comedy</button>
                             <button data-id="Adventure" onClick={handleSortingFavorites} className={isActive !== 'Adventure' ? styles.sortFav : styles.activeBtn}>Adventure</button>
-                            <button disabled={!favorite.length} data-id="Favorites" onClick={handleSortingFavorites} type="button" className={isActive !== 'Favorites' ? styles.sortFav : styles.activeBtn}>Favorites</button>
+                            {favorite.length && <button data-id="Favorites" onClick={handleSortingFavorites} type="button" className={isActive !== 'Favorites' ? styles.sortFav : styles.activeBtn}>Favorites</button>}
                         </div>
                         <div>
                             <form className={styles.form}>
@@ -201,9 +194,9 @@ function MainList() {
                     })}
                     </ul>}
                 </div>
-                {!isPreloader && isActive === 'All' && <div className={styles.paginContainer}>
+                {!isPreloader && isActive === 'All' && page < 4 && isVisiblePagin && <div className={styles.paginContainer}>
                     <button className={styles.paginBtn} data-id="prev" type='button' onClick={handlePagin}>prev</button>
-                    {page < 4 && isVisiblePagin && <button className={styles.paginBtn} data-id="next" type='button' onClick={handlePagin}>next</button>}
+                    <button className={styles.paginBtn} data-id="next" type='button' onClick={handlePagin}>next</button>
                 </div>}
             </div >
         </>

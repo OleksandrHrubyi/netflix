@@ -1,12 +1,18 @@
+import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { getTokenState, getUserName } from '../../redux/User/userSelectors'
+import styles from './home.module.css'
 import MainForm from 'components/MainForm/MainForm'
 import InfoSection from 'components/InfoSection/InfoSection'
-import DownloadSection from 'components/DownloadSection/DownloadSection'
-import KidSection from 'components/KidSection/KidSection'
-import QuestionSection from 'components/QuestionSection/QuestionSection'
-import styles from './home.module.css'
+
+const DownloadSection = React.lazy(() =>
+  import('../DownloadSection/DownloadSection'),
+)
+const KidSection = React.lazy(() => import('../KidSection/KidSection'))
+const QuestionSection = React.lazy(() =>
+  import('../QuestionSection/QuestionSection'),
+)
 
 function Home({ islogin, name }) {
   return (
@@ -17,10 +23,21 @@ function Home({ islogin, name }) {
           <MainForm condition />
         </div>
       </div>
-      <InfoSection />
-      <DownloadSection />
-      <KidSection />
-      <QuestionSection />
+      <section>
+        <InfoSection />
+      </section>
+      <section>
+        {' '}
+        <DownloadSection />
+      </section>
+      <section>
+        {' '}
+        <KidSection />
+      </section>
+      <section>
+        {' '}
+        <QuestionSection />
+      </section>
       {!islogin && <MainForm />}
     </>
   )

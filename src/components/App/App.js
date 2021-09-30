@@ -9,7 +9,6 @@ import PrivatRoute from "../PrivatRoute/PrivatRoute";
 import { refreshUser } from "../../redux/User/userOperation";
 import { useEffect } from "react";
 import Preloader from "components/Preloader/Preloader";
-const Main = React.lazy(() => import("../Main/Main"));
 const Home = React.lazy(() => import("../Home/Home"));
 const Login = React.lazy(() => import("../Login/Login"));
 const Registr = React.lazy(() => import("../Registr/Registr"));
@@ -20,7 +19,7 @@ function App({ onRefreshUser }) {
 
   useEffect(() => {
     onRefreshUser()
-  }, [])
+  }, [onRefreshUser])
 
   return (
     <>

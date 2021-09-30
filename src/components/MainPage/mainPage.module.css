@@ -17,12 +17,6 @@
   margin: 150px auto 0;
 }
 
-/* @media screen and (min-width: 768px) {
-  .container {
-    margin: 100px auto 0;
-  }
-} */
-
 .page {
   display: flex;
   border-radius: 10px;

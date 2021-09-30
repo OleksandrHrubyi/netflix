@@ -1,0 +1,2 @@
+(this.webpackJsonpnetflix=this.webpackJsonpnetflix||[]).push([[10],{150:function(t,n,e){"use strict";e.r(n);var c=e(20),r=e(31),u=function(t){return t.contacts.items},i=(Object(r.a)([u,function(t){return t.contacts.filter}],(function(t,n){var e=n.toLowerCase();return t.filter((function(t){return t.name.toLowerCase().includes(e)}))})),e(52)),o=e(2);n.default=Object(c.b)((function(t){return{contacts:u(t)}}),null)((function(t){return t.contacts,Object(o.jsx)(o.Fragment,{children:Object(o.jsx)(i.a,{})})}))}}]);
+//# sourceMappingURL=10.9078d0f3.chunk.js.map

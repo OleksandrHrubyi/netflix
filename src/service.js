@@ -1,9 +1,9 @@
 import axios from "axios";
 // https://my-net.herokuapp.com/api 
+// http://localhost:3000/api
 
-
-const signup = "http://localhost:3000/api"
-const main = "http://api.tvmaze.com"
+const signup = "https://my-net.herokuapp.com/api"
+const main = "https://api.tvmaze.com"
 
 
 
@@ -51,7 +51,7 @@ export const getAllEpisod = (page) => {
 }
 
 export const getFilm = async (filmId) => {
-  return fetch(`http://api.tvmaze.com/shows/${filmId}`).then(response => response.json()).then(result => {
+  return fetch(`https://api.tvmaze.com/shows/${filmId}`).then(response => response.json()).then(result => {
     return result
   })
 }
